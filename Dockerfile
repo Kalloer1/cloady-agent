@@ -32,7 +32,8 @@ RUN set -eux; \
 RUN curl -fsSL --retry 3 https://api.instabox.sh/install.sh | sh
 
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod 0755 /entrypoint.sh && mkdir -p /data/picoclaw
+COPY respond.sh /usr/local/bin/respond.sh
+RUN chmod 0755 /entrypoint.sh /usr/local/bin/respond.sh && mkdir -p /data/picoclaw
 
 EXPOSE 3080
 ENTRYPOINT ["/entrypoint.sh"]

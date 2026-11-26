@@ -54,7 +54,6 @@ chmod 600 "$PICOCLAW_CONFIG"
 
 # cloady 的探针打哪个路径不确定，用 socat 对任何路径都回 200；
 # 真 gateway 只在回环 18790，不对外。端口沿用 3080 保住域名映射。
-socat TCP-LISTEN:3080,fork,reuseaddr \
-  SYSTEM:'printf "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\nConnection: close\r\n\r\nok\n"' &
+socat TCP-LISTEN:3080,fork,reuseaddr EXEC:/usr/local/bin/respond.sh &
 
 exec picoclaw gateway
