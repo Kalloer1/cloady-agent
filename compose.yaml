@@ -1,0 +1,9 @@
+services:
+  # 服务名沿用 dsh：cloady 的域名记录绑在 component+port 上，改名会让 ds.mccnp.top 失联
+  dsh:
+    build: .
+    ports:
+      - "3080:3080"
+    environment:
+      PICOCLAW_HOME: /data/picoclaw
+      INSTABOX_NO_UPDATE_CHECK: "1"
